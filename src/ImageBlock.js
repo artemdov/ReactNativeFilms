@@ -3,15 +3,18 @@ import {StyleSheet, Image, TouchableOpacity, Text, View, TextInput, Button, Aler
 import {w} from "./constans";
 
 
-export const ImageBlock = () => {
-    const {imageName, imageBlock, ImageContainer, image} = styles
+export const ImageBlock = (props) => {
+    const name = props.appState.show.name
+    const img = props.appState.show.image.original
+    const {imageName, imageBlock, ImageContainer, imageView} = styles
+
     return (
         <View style={ImageContainer}>
-            <View style={image}>
+            <View style={imageView}>
                 <Image style={imageBlock}
-                       source={{uri: 'https://static.tvmaze.com/uploads/images/original_untouched/6/16463.jpg'}}/>
+                       source={{uri: img}}/>
             </View>
-            <Text style={imageName}>Batman</Text>
+            <Text style={imageName}>{name.toUpperCase()}</Text>
         </View>
     )
 }
@@ -21,17 +24,19 @@ const styles = StyleSheet.create({
         fontSize: 18,
         alignSelf: 'center',
         textAlign: 'center',
-        width: w / 2.4
+        width: w / 2.4,
+        marginBottom: 20,
     },
     imageBlock: {
         width: w / 2.4,
         height: w * 0.63,
-        borderRadius: 10
+        borderRadius: 10,
     },
     ImageContainer: {
-        width: w / 2.4
+        width: w / 2.4,
+
     },
-    image: {
+    imageView: {
         shadowColor: '#000',
         shadowRadius: 8,
         shadowOffset: {width: 0, height: 5},

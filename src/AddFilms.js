@@ -1,25 +1,28 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Image, TouchableOpacity, Text, View, TextInput, Button, Alert} from 'react-native';
+import {StyleSheet,ScrollView, Image, TouchableOpacity, Text, View, TextInput, Button, Alert} from 'react-native';
 import {useDispatch, useSelector} from "react-redux";
 import {getDataTC} from "./redux/addFilmReducer";
+import {ImageBlock} from "./ImageBlock";
+import axios from "axios";
 
 
 export const AddFilms = () => {
+    const url = 'https://api.tvmaze.com/search/shows?q=batman'
+    const [appState, setAppState] = useState([])
 
+    const {viewStyle, input, imageButton, arrayImages} = styles
 
-    const {viewStyle, input, imageButton} = styles
+    /* useEffect(() => {
 
-   /* useEffect(() => {
+         try{
+             dispatch(getDataTC())
+         } catch (error) {
+             throw new Error(error)
+         }
 
-        try{
-            dispatch(getDataTC())
-        } catch (error) {
-            throw new Error(error)
-        }
+     }, [])*/
 
-    }, [])*/
-
-    /*useEffect(() => {
+    useEffect(() => {
         try {
             axios.get(url)
                 .then((res) => {
@@ -31,7 +34,7 @@ export const AddFilms = () => {
             throw new Error(error)
         }
 
-    }, [])*/
+    }, [])
 
 
     return (
@@ -45,9 +48,14 @@ export const AddFilms = () => {
                            source={require('./buttonSearch.png')}/>
                 </TouchableOpacity>
             </View>
-            <View>
-                {}
+            <ScrollView>
+            <View style={arrayImages}>
+                {
+                    appState.map(item =>
+                        <ImageBlock key={item.id} appState={item}/>)
+                }
             </View>
+            </ScrollView>
         </View>
 
     )
@@ -81,5 +89,13 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 25,
         backgroundColor: '#ffff'
+    },
+    arrayImages: {
+        marginTop: 30,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        flexShrink: 2,
+        justifyContent: 'space-around',
+        marginBottom: '58%'
     }
 });
