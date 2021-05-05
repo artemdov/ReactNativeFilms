@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet,ScrollView, Image, TouchableOpacity, Text, View, TextInput, Button, Alert} from 'react-native';
 import {useDispatch, useSelector} from "react-redux";
-import {getDataTC} from "./redux/addFilmReducer";
-import {ImageBlock} from "./ImageBlock";
+import {getDataTC} from "../redux/addFilmReducer";
+import {ImageBlock} from "../components/ImageBlock";
 import axios from "axios";
+import {SECOND_SCREEN_VIEW} from "../routes";
 
+export const MainScreen = ({navigation}) => {
 
-export const AddFilms = () => {
     const url = 'https://api.tvmaze.com/search/shows?q=batman'
-    const [appState, setAppState] = useState([])
-
+    const [data, setData] = useState([])
     const {viewStyle, input, imageButton, arrayImages} = styles
 
     /* useEffect(() => {
@@ -21,13 +21,12 @@ export const AddFilms = () => {
          }
 
      }, [])*/
-
     useEffect(() => {
         try {
             axios.get(url)
                 .then((res) => {
                         const response = res.data
-                        setAppState(response)
+                        setData(response)
                     }
                 )
         } catch (error) {
@@ -36,23 +35,29 @@ export const AddFilms = () => {
 
     }, [])
 
-
     return (
+
         <View>
             <View style={viewStyle}>
                 <TextInput style={input}/>
-                <TouchableOpacity activeOpacity={0.5} onPress={() => Alert.alert('Hello', 'I am developer', [
+                <TouchableOpacity onPress={() => alert('Hello', 'I am developer', [
                     {text: 'OK'}
                 ])}>
                     <Image style={imageButton}
-                           source={require('./buttonSearch.png')}/>
+                           source={require('../buttonSearch.png')}/>
                 </TouchableOpacity>
             </View>
             <ScrollView>
+                <Button
+                />
             <View style={arrayImages}>
                 {
-                    appState.map(item =>
-                        <ImageBlock key={item.id} appState={item}/>)
+                    data.map(item =>
+                        <ImageBlock key={item.show.id}
+                                    data={item.show}
+                                    onPress={() => {navigation.navigate()}}
+                        />
+                        )
                 }
             </View>
             </ScrollView>
