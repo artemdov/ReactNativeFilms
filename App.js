@@ -1,10 +1,7 @@
 import React from 'react';
 import {MainScreen} from "./src/Screen/MainScreen";
-import {StyleSheet, View} from "react-native";
 import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
-import store from "./src/redux/store";
-import {Provider} from 'react-redux';
 import {SecondScreen} from "./src/Screen/SecondScreen";
 
 /*const AppWrapper = () => {
@@ -18,20 +15,16 @@ import {SecondScreen} from "./src/Screen/SecondScreen";
 const Stack = createStackNavigator()
 
 export const App = () => {
-    const Main = ({navigation}) => {
-        const Press = ()=>{
-            navigation.navigate('Second')
-        }
-    }
+
     return (
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen
-                        name={'Screen'}
+                        name={'MainScreen'}
                         component={MainScreen}
                />
                 <Stack.Screen
-                    name={'ScreenTwo'}
+                    name={'SecondScreen'}
                     component={SecondScreen}
                 />
             </Stack.Navigator>

@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet,ScrollView, Image, TouchableOpacity, Text, View, TextInput, Button, Alert} from 'react-native';
-import {useDispatch, useSelector} from "react-redux";
-import {getDataTC} from "../redux/addFilmReducer";
+import {StyleSheet, ScrollView, Image, TouchableOpacity, Text, View, TextInput, Button, Alert} from 'react-native';
 import {ImageBlock} from "../components/ImageBlock";
+import {NavigationContainer} from "@react-navigation/native";
+import {createStackNavigator} from "@react-navigation/stack";
 import axios from "axios";
-import {SECOND_SCREEN_VIEW} from "../routes";
 
 export const MainScreen = ({navigation}) => {
 
@@ -48,18 +47,18 @@ export const MainScreen = ({navigation}) => {
                 </TouchableOpacity>
             </View>
             <ScrollView>
-                <Button
-                />
-            <View style={arrayImages}>
-                {
-                    data.map(item =>
-                        <ImageBlock key={item.show.id}
-                                    data={item.show}
-                                    onPress={() => {navigation.navigate()}}
-                        />
+                <View style={arrayImages}>
+                    {
+                        data.map(item =>
+                            <ImageBlock key={item.show.id}
+                                        data={item.show}
+                                        onPress={() => {
+                                            navigation.navigate('SecondScreen')
+                                        }}
+                            />
                         )
-                }
-            </View>
+                    }
+                </View>
             </ScrollView>
         </View>
 

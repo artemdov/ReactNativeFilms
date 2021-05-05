@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet,ScrollView, Image, TouchableOpacity, Text, View, TextInput, Button, Alert} from 'react-native';
+import {StyleSheet, Pressable, ScrollView, Image, TouchableOpacity, Text, View, TextInput, Button, Alert} from 'react-native';
 import {useDispatch, useSelector} from "react-redux";
 import {getDataTC} from "../redux/addFilmReducer";
 import {ImageBlock} from "../components/ImageBlock";
@@ -14,7 +14,8 @@ export const SecondScreen = ({navigation}) => {
     return (
 
         <View>
-            <Button onPress={()=>{navigation.navigate()}}/>
+            <Pressable onPress={()=>{navigation.navigate()}}/>
+            <Pressable/>
            <Text>Hello</Text>
         </View>
 
