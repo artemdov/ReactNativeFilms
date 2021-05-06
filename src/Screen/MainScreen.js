@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, ScrollView, Image, TouchableOpacity, Text, View, TextInput, Button, Alert} from 'react-native';
 import {ImageBlock} from "../components/ImageBlock";
-import {NavigationContainer} from "@react-navigation/native";
-import {createStackNavigator} from "@react-navigation/stack";
 import axios from "axios";
 
 export const MainScreen = ({navigation}) => {
@@ -34,6 +32,7 @@ export const MainScreen = ({navigation}) => {
 
     }, [])
 
+
     return (
 
         <View>
@@ -53,7 +52,7 @@ export const MainScreen = ({navigation}) => {
                             <ImageBlock key={item.show.id}
                                         data={item.show}
                                         onPress={() => {
-                                            navigation.navigate('SecondScreen')
+                                            navigation.navigate('SecondScreen',(item.show))
                                         }}
                             />
                         )

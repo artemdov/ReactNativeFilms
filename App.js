@@ -22,10 +22,16 @@ export const App = () => {
                 <Stack.Screen
                         name={'MainScreen'}
                         component={MainScreen}
+                        options={{
+                         header: () =>null
+                        }}
                />
                 <Stack.Screen
                     name={'SecondScreen'}
                     component={SecondScreen}
+                    options={{
+                        header: () =>null
+                    }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

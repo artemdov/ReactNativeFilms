@@ -1,23 +1,44 @@
 import React from 'react';
-import {StyleSheet, Pressable, ScrollView, Image, TouchableOpacity, Text, View, TextInput, Button, Alert} from 'react-native';
-import {useDispatch, useSelector} from "react-redux";
-import {getDataTC} from "../redux/addFilmReducer";
-import {ImageBlock} from "../components/ImageBlock";
-import axios from "axios";
-import {SECOND_SCREEN_VIEW} from "../routes";
+import {
+    StyleSheet,
+    Pressable,
+    ScrollView,
+    Image,
+    TouchableOpacity,
+    Text,
+    View,
+    TextInput,
+    Button,
+    Alert
+} from 'react-native';
+import Ionicons from "react-native-vector-icons/Ionicons";
+import {ifIphoneX} from "react-native-iphone-x-helper";
+import {w} from "../components/constans";
 
 
-export const SecondScreen = ({navigation}) => {
-    const {header} = styles
-
-
+export const SecondScreen = ({navigation, route}) => {
+    const name = route.params.name
+    const summary = route.params.summary
+    const {header, backArrowStyle, textArrowStyle} = styles
 
     return (
 
         <View style={header}>
-            <Pressable onPress={()=>{navigation.navigate()}}/>
-            <Pressable/>
+
+
+            <TouchableOpacity>
+                <Text onPress={() => {
+                    navigation.navigate('MainScreen')
+                }}>
+                    <Ionicons name='chevron-back-outline' style={backArrowStyle}/>
+                </Text>
+            </TouchableOpacity>
+                <Text  style={textArrowStyle}>{name}</Text>
+
+
+
         </View>
+
 
     )
 }
@@ -27,13 +48,42 @@ const styles = StyleSheet.create({
         height: 120,
         flexDirection: 'row',
         alignItems: 'flex-end',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         backgroundColor: '#30d0fe',
+        ...ifIphoneX({
+            height: 116
+        }, {
+            height: 90
+        }),
         paddingBottom: 10,
         shadowColor: '#000',
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.2,
         elevation: 2,
+    },
+    backArrowStyle: {
+        ...ifIphoneX({
+            paddingTop: 75
+        }, {
+            paddingTop: 30
+        }),
+        fontSize: 40,
+        color: '#fff',
+        marginLeft: 20,
+
+
+
+    },
+    textArrowStyle: {
+        color: '#fff',
+        fontSize: 32,
+        ...ifIphoneX({
+            paddingTop: 75
+        }, {
+            paddingTop: 50
+        }),
+        width: w-40,
 
     }
+
 })
