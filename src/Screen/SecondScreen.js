@@ -14,28 +14,37 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {ifIphoneX} from "react-native-iphone-x-helper";
 import {w} from "../components/constans";
+import {ImageSecondScreen} from "../components/ImageSecondScreen";
 
 
 export const SecondScreen = ({navigation, route}) => {
+
+    const image = route.params.image.medium
     const name = route.params.name
     const summary = route.params.summary
-    const {header, backArrowStyle, textArrowStyle} = styles
+    const {header, backArrowStyle, textArrowStyle, SecondScreenName, SecondScreenText, secondScreenView} = styles
 
     return (
-
-        <View style={header}>
-
-
-            <TouchableOpacity>
-                <Text onPress={() => {
-                    navigation.navigate('MainScreen')
-                }}>
-                    <Ionicons name='chevron-back-outline' style={backArrowStyle}/>
-                </Text>
-            </TouchableOpacity>
-                <Text  style={textArrowStyle}>{name}</Text>
+        <View>
+            <View style={header}>
 
 
+                <TouchableOpacity>
+                    <Text onPress={() => {
+                        navigation.navigate('MainScreen')
+                    }}>
+                        <Ionicons name='chevron-back-outline' style={backArrowStyle}/>
+                    </Text>
+                </TouchableOpacity>
+                <Text numberOfLines={1} ellipsizeMode='tail' style={textArrowStyle}>{name}</Text>
+            </View>
+            <ScrollView>
+                <View style={secondScreenView}>
+                    <ImageSecondScreen image={image}/>
+                    <Text style={SecondScreenName}>{name.toUpperCase()}</Text>
+                    <Text style={SecondScreenText}>{summary.replace(/<[^>]+>/g, '')}</Text>
+                </View>
+            </ScrollView>
 
         </View>
 
@@ -70,9 +79,6 @@ const styles = StyleSheet.create({
         fontSize: 40,
         color: '#fff',
         marginLeft: 20,
-
-
-
     },
     textArrowStyle: {
         color: '#fff',
@@ -82,8 +88,25 @@ const styles = StyleSheet.create({
         }, {
             paddingTop: 50
         }),
-        width: w-40,
+        width: w - 50,
+    },
+    SecondScreenText: {
+        fontSize: 15,
+        padding: 15,
+        paddingHorizontal: 15,
+        textAlign: 'center'
+    },
+    SecondScreenName: {
+        fontSize: 25,
+        padding: 15,
+        textAlign: 'center',
+        fontWeight: 'bold'
 
+    },
+    secondScreenView: {
+
+        alignItems: 'center',
+        marginBottom: 160
     }
 
 })

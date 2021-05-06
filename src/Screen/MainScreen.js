@@ -99,6 +99,6 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         flexShrink: 2,
         justifyContent: 'space-around',
-        marginBottom: '58%'
+        marginBottom: '40%'
     }
 })
