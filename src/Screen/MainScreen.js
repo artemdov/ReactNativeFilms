@@ -1,13 +1,28 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, ScrollView, Image, TouchableOpacity, Text, View, TextInput, Button, Alert} from 'react-native';
+import {
+    StyleSheet,
+    ScrollView,
+    Image,
+    TouchableOpacity,
+    Text,
+    View,
+    TextInput,
+    Button,
+    Alert,
+    onChangeText, onBlur
+} from 'react-native';
 import {ImageBlock} from "../components/ImageBlock";
 import axios from "axios";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import {ifIphoneX} from "react-native-iphone-x-helper";
+import {onChange} from "react-native-reanimated";
+import {w} from "../components/constans";
 
 export const MainScreen = ({navigation}) => {
 
     const url = 'https://api.tvmaze.com/search/shows?q=batman'
     const [data, setData] = useState([])
-    const {viewStyle, input, imageButton, arrayImages} = styles
+    const {viewStyle, input, searchButton, arrayImages, iconSearch} = styles
 
     /* useEffect(() => {
 
@@ -37,12 +52,12 @@ export const MainScreen = ({navigation}) => {
 
         <View>
             <View style={viewStyle}>
-                <TextInput style={input}/>
-                <TouchableOpacity onPress={() => alert('Hello', 'I am developer', [
-                    {text: 'OK'}
-                ])}>
-                    <Image style={imageButton}
-                           source={require('../buttonSearch.png')}/>
+                <TextInput style={input}
+                placeholder={'Search'}/>
+                <TouchableOpacity onPress={() => alert('Hello')}>
+                    <View style={searchButton}>
+                    <Ionicons name='search-circle' style={iconSearch}/>
+                    </View>
                 </TouchableOpacity>
             </View>
             <ScrollView>
@@ -52,7 +67,7 @@ export const MainScreen = ({navigation}) => {
                             <ImageBlock key={item.show.id}
                                         data={item.show}
                                         onPress={() => {
-                                            navigation.navigate('SecondScreen',(item.show))
+                                            navigation.navigate('SecondScreen', (item.show))
                                         }}
                             />
                         )
@@ -63,6 +78,7 @@ export const MainScreen = ({navigation}) => {
 
     )
 }
+
 
 const styles = StyleSheet.create({
     viewStyle: {
@@ -76,22 +92,27 @@ const styles = StyleSheet.create({
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.2,
         elevation: 2,
+        position: 'relative',
+        ...ifIphoneX({
+            height: 120
+        }, {
+            height: 110
+        }),
 
     },
     input: {
-        width: '80%',
+        width: w-90,
         height: 40,
-        borderRadius: 15,
+        borderRadius: 20,
         backgroundColor: '#ffff',
-        textAlign: 'center',
-        justifyContent: 'center',
-
+        fontSize: 20,
+        paddingLeft: 15,
+        position: 'relative',
+        marginLeft: 15,
     },
-    imageButton: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
-        backgroundColor: '#ffff'
+    iconSearch: {
+        fontSize: 70,
+        top: 20
     },
     arrayImages: {
         marginTop: 30,
@@ -101,4 +122,5 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         marginBottom: '40%'
     }
+
 })

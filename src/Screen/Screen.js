@@ -14,12 +14,12 @@ export const App = () => {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen
-                        name={'MainScreen'}
-                        component={MainScreen}
-                        options={{
-                         header: () =>null
-                        }}
-               />
+                    name={'MainScreen'}
+                    component={MainScreen}
+                    options={{
+                        header: () =>null
+                    }}
+                />
                 <Stack.Screen
                     name={'SecondScreen'}
                     component={SecondScreen}
