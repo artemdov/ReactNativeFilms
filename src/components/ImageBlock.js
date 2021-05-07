@@ -6,7 +6,7 @@ import {w} from "./constans";
 export const ImageBlock = (props) => {
 
     const name = props.data.name
-    const img = props.data.image.original
+    const img = props.data.image === null ? '' : props.data.image.original
     const {imageName, imageBlock, ImageContainer, imageView} = styles
 
     return (

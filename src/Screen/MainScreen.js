@@ -11,51 +11,34 @@ import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {ifIphoneX} from "react-native-iphone-x-helper";
 import {w} from "../components/constans";
-import {useDispatch} from "react-redux";
-import {changeValueTC} from "../redux/addFilmReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {changeValueAC, changeValueTC} from "../redux/addFilmReducer";
 
 
-
-
-
-export const MainScreen = ({navigation, changeValueAC}) => {
-
+export const MainScreen = ({navigation, ...props}) => {
+    debugger
+    const data = useSelector(state => state.data.data)
+    const value = useSelector(state => state.data.value)
     const dispatch = useDispatch()
     const url = 'https://api.tvmaze.com/search/shows?q=batman'
-    const [data, setData] = useState([])
-    const [newValue, setNewValue] = useState('')
     const {viewStyle, input, searchButton, arrayImages, iconSearch} = styles
 
-     useEffect((newValue) => {
-         debugger
-         try{
-             dispatch(changeValueTC(newValue))
-         } catch (error) {
-             throw new Error(error)
-         }
-
-     }, [])
 
     useEffect(() => {
         try {
-            axios.get(url)
-                .then((res) => {
-                        const response = res.data
-                        setData(response)
-                    }
-                )
+            dispatch(changeValueTC(data))
         } catch (error) {
-            throw new Error(error)
+            throw new Error(alert(error))
         }
 
     }, [])
-    /*let onChangeHandler = (e) => {
-        setNewValue(e.currentTarget.value)
-    }*/
-    const onChangeHandler = (newValue) => {
-        setNewValue(changeValueAC(newValue))
-    }
 
+    const onChangeHandler = (value) => {
+        dispatch(changeValueAC(value))
+    }
+    const onClickHandler = () => {
+        dispatch(changeValueTC(value))
+    }
 
     return (
 
@@ -64,7 +47,7 @@ export const MainScreen = ({navigation, changeValueAC}) => {
                 <TextInput style={input}
                            placeholder={'Search'}
                            onChangeText={onChangeHandler}/>
-                <TouchableOpacity onPress={() => alert('Hello')}>
+                <TouchableOpacity onPress={onClickHandler}>
                     <View style={searchButton}>
                         <Ionicons name='search-circle' style={iconSearch}/>
                     </View>

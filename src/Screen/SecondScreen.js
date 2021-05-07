@@ -15,7 +15,7 @@ import {ImageSecondScreen} from "../components/ImageSecondScreen";
 
 export const SecondScreen = ({navigation, route}) => {
 
-    const image = route.params.image.medium
+    const image = route.params.image.original
     const name = route.params.name
     const summary = route.params.summary
     const {header, backArrowStyle, textArrowStyle, SecondScreenName, SecondScreenText, secondScreenView} = styles
