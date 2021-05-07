@@ -1,15 +1,11 @@
 import React from 'react';
 import {
     StyleSheet,
-    Pressable,
     ScrollView,
-    Image,
     TouchableOpacity,
     Text,
     View,
-    TextInput,
-    Button,
-    Alert
+
 } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {ifIphoneX} from "react-native-iphone-x-helper";

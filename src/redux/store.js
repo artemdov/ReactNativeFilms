@@ -2,6 +2,7 @@ import {applyMiddleware, combineReducers, createStore,} from "redux";
 import thunkMiddleWare from 'redux-thunk'
 import addFilmReducer from "./addFilmReducer";
 
+
 const rootReducer = combineReducers({
     imageList: addFilmReducer
 })

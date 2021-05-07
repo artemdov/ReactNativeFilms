@@ -2,37 +2,40 @@ import React, {useEffect, useState} from 'react';
 import {
     StyleSheet,
     ScrollView,
-    Image,
     TouchableOpacity,
-    Text,
     View,
     TextInput,
-    Button,
-    Alert,
-    onChangeText, onBlur
 } from 'react-native';
 import {ImageBlock} from "../components/ImageBlock";
 import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {ifIphoneX} from "react-native-iphone-x-helper";
-import {onChange} from "react-native-reanimated";
 import {w} from "../components/constans";
+import {useDispatch} from "react-redux";
+import {changeValueTC} from "../redux/addFilmReducer";
 
-export const MainScreen = ({navigation}) => {
 
+
+
+
+export const MainScreen = ({navigation, changeValueAC}) => {
+
+    const dispatch = useDispatch()
     const url = 'https://api.tvmaze.com/search/shows?q=batman'
     const [data, setData] = useState([])
+    const [newValue, setNewValue] = useState('')
     const {viewStyle, input, searchButton, arrayImages, iconSearch} = styles
 
-    /* useEffect(() => {
-
+     useEffect((newValue) => {
+         debugger
          try{
-             dispatch(getDataTC())
+             dispatch(changeValueTC(newValue))
          } catch (error) {
              throw new Error(error)
          }
 
-     }, [])*/
+     }, [])
+
     useEffect(() => {
         try {
             axios.get(url)
@@ -46,6 +49,12 @@ export const MainScreen = ({navigation}) => {
         }
 
     }, [])
+    /*let onChangeHandler = (e) => {
+        setNewValue(e.currentTarget.value)
+    }*/
+    const onChangeHandler = (newValue) => {
+        setNewValue(changeValueAC(newValue))
+    }
 
 
     return (
@@ -53,10 +62,11 @@ export const MainScreen = ({navigation}) => {
         <View>
             <View style={viewStyle}>
                 <TextInput style={input}
-                placeholder={'Search'}/>
+                           placeholder={'Search'}
+                           onChangeText={onChangeHandler}/>
                 <TouchableOpacity onPress={() => alert('Hello')}>
                     <View style={searchButton}>
-                    <Ionicons name='search-circle' style={iconSearch}/>
+                        <Ionicons name='search-circle' style={iconSearch}/>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -101,7 +111,7 @@ const styles = StyleSheet.create({
 
     },
     input: {
-        width: w-90,
+        width: w - 90,
         height: 40,
         borderRadius: 20,
         backgroundColor: '#ffff',

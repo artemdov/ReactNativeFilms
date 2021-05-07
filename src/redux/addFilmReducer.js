@@ -1,19 +1,17 @@
 import axios from "axios";
 
-const GET_DATA = 'GET-DATA'
+const CHANGE_VALUE = 'CHANGE-VALUE'
 
 
-const url = 'https://api.tvmaze.com/search/shows?q=batman'
 const initialState = {
-    data: null
+    value: ''
 }
 const addFilmReducer = (state = initialState, action) => {
 
     switch (action.type) {
-
-        case GET_DATA: {
+        case CHANGE_VALUE: {
           return   {
-              ...state, data: action.data
+              ...state, value: action.value
             }
         }
         default:
@@ -22,14 +20,16 @@ const addFilmReducer = (state = initialState, action) => {
 }
 
 
+export const changeValueAC = (value) => {
+    return {type: CHANGE_VALUE, value}
+}
 
-export const getDataTC = () => async (dispatch) => {
+export const changeValueTC = (value) => async (dispatch) => {
+    const url = `https://api.tvmaze.com/search/shows?q=${value}`
     let response = await axios.get(url)
-    dispatch(getDataAC(response.data))
+    dispatch(changeValueAC(response))
 }
-export const getDataAC = (data) => {
-    return {type: GET_DATA, data}
-}
+
 
 
 

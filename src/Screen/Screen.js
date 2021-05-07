@@ -1,14 +1,14 @@
 import React from 'react';
-import {MainScreen} from "./src/Screen/MainScreen";
+import {MainScreen} from "./MainScreen";
 import {NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
-import {SecondScreen} from "./src/Screen/SecondScreen";
+import {SecondScreen} from "./SecondScreen";
 
 
 
 const Stack = createStackNavigator()
 
-export const App = () => {
+export const Screen = () => {
 
     return (
         <NavigationContainer>
@@ -33,4 +33,4 @@ export const App = () => {
     )
 }
 
-export default App
+export default Screen
