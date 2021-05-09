@@ -15,21 +15,11 @@ import {changeValueAC, changeValueTC} from "../redux/addFilmReducer";
 
 
 export const MainScreen = ({navigation}) => {
-    debugger
     const data = useSelector(state => state.data.data)
     const value = useSelector(state => state.data.value)
     const dispatch = useDispatch()
     const {viewStyle, input, searchButton, arrayImages, iconSearch} = styles
 
-
-    useEffect(() => {
-        try {
-            dispatch(changeValueTC(data))
-        } catch (error) {
-            throw new Error(error)
-        }
-
-    }, [])
 
     const onChangeHandler = (value) => {
         dispatch(changeValueAC(value))
