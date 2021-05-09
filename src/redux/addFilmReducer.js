@@ -10,15 +10,14 @@ const initialState = {
 }
 const addFilmReducer = (state = initialState, action) => {
 
-
     switch (action.type) {
         case CHANGE_VALUE: {
-          return   {
-              ...state, value: action.value
+            return {
+                ...state, value: action.value
             }
         }
         case GET_MOVIES: {
-            return   {
+            return {
                 ...state, data: action.data
             }
         }
@@ -36,14 +35,11 @@ export const getMoviesAC = (data) => {
 }
 
 export const changeValueTC = (value) => async (dispatch) => {
-    debugger
     const url = `https://api.tvmaze.com/search/shows?q=${value}`
     let response = await axios.get(url)
     dispatch(getMoviesAC(response.data))
     dispatch(changeValueAC(value))
 }
-
-
 
 
 export default addFilmReducer

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {
     StyleSheet,
     ScrollView,
@@ -7,7 +7,6 @@ import {
     TextInput,
 } from 'react-native';
 import {ImageBlock} from "../components/ImageBlock";
-import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {ifIphoneX} from "react-native-iphone-x-helper";
 import {w} from "../components/constans";
@@ -15,12 +14,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {changeValueAC, changeValueTC} from "../redux/addFilmReducer";
 
 
-export const MainScreen = ({navigation, ...props}) => {
+export const MainScreen = ({navigation}) => {
     debugger
     const data = useSelector(state => state.data.data)
     const value = useSelector(state => state.data.value)
     const dispatch = useDispatch()
-    const url = 'https://api.tvmaze.com/search/shows?q=batman'
     const {viewStyle, input, searchButton, arrayImages, iconSearch} = styles
 
 
@@ -28,7 +26,7 @@ export const MainScreen = ({navigation, ...props}) => {
         try {
             dispatch(changeValueTC(data))
         } catch (error) {
-            throw new Error(alert(error))
+            throw new Error(error)
         }
 
     }, [])

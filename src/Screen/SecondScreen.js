@@ -24,7 +24,6 @@ export const SecondScreen = ({navigation, route}) => {
         <View>
             <View style={header}>
 
-
                 <TouchableOpacity>
                     <Text onPress={() => {
                         navigation.navigate('MainScreen')

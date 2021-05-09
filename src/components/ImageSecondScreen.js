@@ -11,7 +11,6 @@ export const ImageSecondScreen = ({image}) => {
             <View style={ImageContainer}>
                 <Image style={imageBlock}
                        source={{uri: image}}/>
-
             </View>
         </View>
     )
