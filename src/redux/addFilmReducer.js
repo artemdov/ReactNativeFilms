@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const CHANGE_VALUE = 'CHANGE-VALUE'
+export const CHANGE_VALUE = 'CHANGE-VALUE'
 const GET_MOVIES = 'GET-MOVIES'
+export const LOAD_DATA = 'LOAD-DATA'
 
 
 const initialState = {
@@ -30,16 +31,21 @@ const addFilmReducer = (state = initialState, action) => {
 export const changeValueAC = (value) => {
     return {type: CHANGE_VALUE, value}
 }
-export const getMoviesAC = (data) => {
+export const getMovies = (data) => {
     return {type: GET_MOVIES, data}
 }
+export const loadData = (value) => {
+    return {type: LOAD_DATA, value}
+}
 
+/*
 export const changeValueTC = (value) => async (dispatch) => {
     const url = `https://api.tvmaze.com/search/shows?q=${value}`
     let response = await axios.get(url)
-    dispatch(getMoviesAC(response.data))
+    dispatch(getMovies(response.data))
     dispatch(changeValueAC(value))
 }
+*/
 
 
 export default addFilmReducer

@@ -11,7 +11,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import {ifIphoneX} from "react-native-iphone-x-helper";
 import {w} from "../components/constans";
 import {useDispatch, useSelector} from "react-redux";
-import {changeValueAC, changeValueTC} from "../redux/addFilmReducer";
+import {changeValueAC, changeValueTC, loadData} from "../redux/addFilmReducer";
 
 
 export const MainScreen = ({navigation}) => {
@@ -25,7 +25,7 @@ export const MainScreen = ({navigation}) => {
         dispatch(changeValueAC(value))
     }
     const onClickHandler = () => {
-        dispatch(changeValueTC(value))
+        dispatch(loadData(value))
     }
 
     return (
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     viewStyle: {
         height: 120,
         flexDirection: 'row',
-        alignItems: 'flex-end',
+        alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#30d0fe',
         paddingBottom: 10,
@@ -84,16 +84,21 @@ const styles = StyleSheet.create({
     input: {
         width: w - 90,
         height: 40,
-        borderRadius: 20,
-        backgroundColor: '#ffff',
+        borderTopLeftRadius: 20,
+        borderBottomLeftRadius: 20,
+        backgroundColor: '#fff',
         fontSize: 20,
+        marginTop: 50,
         paddingLeft: 15,
-        position: 'relative',
-        marginLeft: 15,
     },
     iconSearch: {
-        fontSize: 70,
-        top: 20
+        fontSize: 37,
+        backgroundColor: '#fff',
+        marginTop: 50,
+        borderTopRightRadius: 20,
+        borderBottomRightRadius: 20,
+
+
     },
     arrayImages: {
         marginTop: 30,
