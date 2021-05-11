@@ -3,21 +3,20 @@ import {changeValueAC, getMovies, LOAD_DATA} from "./addFilmReducer";
 import {API} from "../api/api";
 
 
-
 export function* workerData(action) {
-    try{
-        let response = yield call( API.getData, action.value)
+    try {
+        let response = yield call(API.getData, action.value)
         yield put(getMovies(response.data))
         yield put(changeValueAC)
-    } catch(er){
-        er('Error')
+    } catch (error) {
+        error('Error')
     }
-
 }
 
 export function* watcherData() {
     yield takeEvery(LOAD_DATA, workerData)
 }
+
 /*
 //thunk
 export const changeValueTC = (value) => async (dispatch) => {

@@ -1,4 +1,3 @@
-import axios from "axios";
 
 export const CHANGE_VALUE = 'CHANGE-VALUE'
 const GET_MOVIES = 'GET-MOVIES'
@@ -39,6 +38,7 @@ export const loadData = (value) => {
 }
 
 /*
+//thunk
 export const changeValueTC = (value) => async (dispatch) => {
     const url = `https://api.tvmaze.com/search/shows?q=${value}`
     let response = await axios.get(url)
@@ -46,6 +46,5 @@ export const changeValueTC = (value) => async (dispatch) => {
     dispatch(changeValueAC(value))
 }
 */
-
 
 export default addFilmReducer

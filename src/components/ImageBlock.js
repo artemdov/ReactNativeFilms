@@ -1,23 +1,23 @@
 import React from 'react';
-import {StyleSheet, Image, TouchableOpacity, Text, View, TextInput, Button, Alert} from 'react-native';
+import {StyleSheet, Image, TouchableOpacity, Text, View} from 'react-native';
 import {w} from "./constans";
 
 
 export const ImageBlock = (props) => {
 
     const name = props.data.name
-    const img =  props.data.image === null ? 'error' : props.data.image.original
+    const img = props.data.image === null ? 'error' : props.data.image.original
     const {imageName, imageBlock, ImageContainer, imageView} = styles
 
     return (
         <TouchableOpacity onPress={props.onPress}>
-        <View style={ImageContainer}>
-            <View style={imageView}>
-                <Image style={imageBlock}
-                       source={{uri: img}}/>
+            <View style={ImageContainer}>
+                <View style={imageView}>
+                    <Image style={imageBlock}
+                           source={{uri: img}}/>
+                </View>
+                <Text style={imageName}>{name.toUpperCase()}</Text>
             </View>
-            <Text style={imageName}>{name.toUpperCase()}</Text>
-        </View>
         </TouchableOpacity>
     )
 }

@@ -7,7 +7,7 @@ import thunkMiddleware from 'redux-thunk'
 
 const sagaMiddleware = createSagaMiddleware()
 export const rootReducer = combineReducers({
-    data: addFilmReducer
+    dataFilms: addFilmReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, sagaMiddleware))

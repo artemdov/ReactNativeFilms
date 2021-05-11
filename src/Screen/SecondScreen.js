@@ -40,10 +40,7 @@ export const SecondScreen = ({navigation, route}) => {
                     <Text style={SecondScreenText}>{summary.replace(/<[^>]+>/g, '')}</Text>
                 </View>
             </ScrollView>
-
         </View>
-
-
     )
 }
 

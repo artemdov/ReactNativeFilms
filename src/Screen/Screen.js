@@ -5,7 +5,6 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {SecondScreen} from "./SecondScreen";
 
 
-
 const Stack = createStackNavigator()
 
 export const Screen = () => {

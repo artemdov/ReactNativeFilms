@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
     StyleSheet,
     ScrollView,
@@ -7,18 +7,18 @@ import {
     TextInput,
 } from 'react-native';
 import {ImageBlock} from "../components/ImageBlock";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import {ifIphoneX} from "react-native-iphone-x-helper";
 import {w} from "../components/constans";
 import {useDispatch, useSelector} from "react-redux";
-import {changeValueAC, changeValueTC, loadData} from "../redux/addFilmReducer";
+import {changeValueAC, loadData} from "../redux/addFilmReducer";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 
 export const MainScreen = ({navigation}) => {
-    const data = useSelector(state => state.data.data)
-    const value = useSelector(state => state.data.value)
+    const data = useSelector(state => state.dataFilms.data)
+    const value = useSelector(state => state.dataFilms.value)
     const dispatch = useDispatch()
-    const {viewStyle, input, searchButton, arrayImages, iconSearch} = styles
+    const {viewStyle, block, input, searchButton, arrayImages, iconSearch} = styles
 
 
     const onChangeHandler = (value) => {
@@ -29,17 +29,18 @@ export const MainScreen = ({navigation}) => {
     }
 
     return (
-
         <View>
             <View style={viewStyle}>
-                <TextInput style={input}
-                           placeholder={'Search'}
-                           onChangeText={onChangeHandler}/>
-                <TouchableOpacity onPress={onClickHandler}>
-                    <View style={searchButton}>
-                        <Ionicons name='search-circle' style={iconSearch}/>
-                    </View>
-                </TouchableOpacity>
+                <View style={block}>
+                    <TextInput style={input}
+                               placeholder={'Search'}
+                               onChangeText={onChangeHandler}/>
+                    <TouchableOpacity onPress={onClickHandler}>
+                        <View style={searchButton}>
+                            <MaterialCommunityIcons name='magnify' style={iconSearch}/>
+                        </View>
+                    </TouchableOpacity>
+                </View>
             </View>
             <ScrollView>
                 <View style={arrayImages}>
@@ -60,15 +61,12 @@ export const MainScreen = ({navigation}) => {
     )
 }
 
-
 const styles = StyleSheet.create({
     viewStyle: {
-        height: 120,
         flexDirection: 'row',
-        alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#30d0fe',
-        paddingBottom: 10,
+        paddingHorizontal: 20,
         shadowColor: '#000',
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.2,
@@ -79,26 +77,36 @@ const styles = StyleSheet.create({
         }, {
             height: 110
         }),
-
+    },
+    block: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 60,
+        width: w - 35,
+        height: 40,
+        backgroundColor: '#fff',
+        borderRadius: 20
     },
     input: {
         width: w - 90,
-        height: 40,
-        borderTopLeftRadius: 20,
-        borderBottomLeftRadius: 20,
+        height: 23,
         backgroundColor: '#fff',
-        fontSize: 20,
-        marginTop: 50,
-        paddingLeft: 15,
+        fontSize: 18,
+        marginLeft: 15,
+    },
+    searchButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: '#000',
     },
     iconSearch: {
-        fontSize: 37,
-        backgroundColor: '#fff',
-        marginTop: 50,
-        borderTopRightRadius: 20,
-        borderBottomRightRadius: 20,
-
-
+        fontSize: 30,
+        marginTop: 2,
+        color: '#fff'
     },
     arrayImages: {
         marginTop: 30,
@@ -106,7 +114,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         flexShrink: 2,
         justifyContent: 'space-around',
-        marginBottom: '40%'
+        marginBottom: '30%'
     }
 
 })
