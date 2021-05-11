@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {ifIphoneX} from "react-native-iphone-x-helper";
-import {w} from "../components/constans";
+import {w} from "../constans";
 import {ImageSecondScreen} from "../components/ImageSecondScreen";
 
 

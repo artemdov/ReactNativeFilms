@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Image, View} from 'react-native';
-import {w} from "./constans";
+import {w} from "../constans";
 
 
 export const ImageSecondScreen = ({image}) => {

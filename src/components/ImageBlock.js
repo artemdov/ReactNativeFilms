@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Image, TouchableOpacity, Text, View} from 'react-native';
-import {w} from "./constans";
+import {w} from "../constans";
 
 
 export const ImageBlock = (props) => {

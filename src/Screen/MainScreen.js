@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {ImageBlock} from "../components/ImageBlock";
 import {ifIphoneX} from "react-native-iphone-x-helper";
-import {w} from "../components/constans";
+import {w} from "../constans";
 import {useDispatch, useSelector} from "react-redux";
 import {changeValueAC, loadData} from "../redux/addFilmReducer";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
